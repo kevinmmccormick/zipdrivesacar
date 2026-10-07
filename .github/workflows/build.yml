@@ -1,0 +1,41 @@
+name: Build ROM
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Install assembler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dasm
+      - name: Assemble 4K ROM
+        run: make
+      - name: Package source and notices with ROM
+        run: |
+          git archive --format=zip --output=build/source.zip HEAD
+          cp LICENSE COPYRIGHT THIRD_PARTY_NOTICES.md README.md build/
+          cd build
+          sha256sum zipdrivesacar.bin > zipdrivesacar.bin.sha256
+      - uses: actions/upload-artifact@v7
+        with:
+          name: zipdrivesacar-development
+          path: |
+            build/zipdrivesacar.bin
+            build/zipdrivesacar.bin.sha256
+            build/source.zip
+            build/LICENSE
+            build/COPYRIGHT
+            build/THIRD_PARTY_NOTICES.md
+            build/README.md
+          if-no-files-found: error

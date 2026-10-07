@@ -1,0 +1,17 @@
+/build/
+/artifacts/
+*.bin
+*.lst
+*.sym
+/ses.txt
+/.vs/
+/.vscode/
+/.idea/
+/.agents/
+/.codex/
+/.claude/
+/.env
+/.env.*
+*.log
+Thumbs.db
+.DS_Store

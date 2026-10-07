@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.asm text eol=lf
+*.inc text eol=lf
+*.h text eol=lf
+*.md text eol=lf
+*.ps1 text eol=crlf
+Makefile text eol=lf
+*.bin binary
+*.png binary
+
+# Preserve upstream header whitespace; do not rewrite vendor files.
+macro.h -whitespace
+vcs.h -whitespace

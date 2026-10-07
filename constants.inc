@@ -1,0 +1,62 @@
+; Zip Drives a Car constants
+
+; Game states
+STATE_BOOT      = 0
+STATE_TITLE     = 1
+STATE_PLAY      = 2
+STATE_HIT       = 3
+STATE_GAME_OVER = 4
+
+; Game modes
+MODE_CRUISE = 0
+MODE_CHAOS  = 1
+MODE_ZEN    = 2
+
+; Mood values
+MOOD_CHILL   = 0
+MOOD_ANNOYED = 1
+MOOD_HUNGRY  = 2
+MOOD_BORED   = 3
+MOOD_ZEN     = 4
+
+; SFX IDs
+SFX_NONE   = 0
+SFX_HORN   = 1
+SFX_SNACK  = 2
+SFX_CRASH  = 3
+SFX_PIT    = 4
+SFX_STARVE = 5
+
+; Object types
+HAZARD_CONE    = 0
+HAZARD_VACUUM  = 1
+HAZARD_GOOSE   = 2
+HAZARD_MANHOLE = 3
+
+SNACK_FISH    = 0
+SNACK_BURGER  = 1
+SNACK_LASAGNA = 2
+
+; Layout constants
+HUD_LINES       = 16
+VISIBLE_LINES   = 192
+FIELD_LINES     = 176
+PLAYER_SCREEN_Y = 136
+
+ROAD_MIN_X = 28
+ROAD_MAX_X = 132
+
+; Input bitfield in input_current / input_pressed
+INPUT_LEFT  = %00000001
+INPUT_RIGHT = %00000010
+INPUT_FIRE  = %00000100
+INPUT_UP    = %00001000
+INPUT_DOWN  = %00010000
+
+; Console switch bits (SWCHB, active low)
+SW_RESET  = %00000001
+SW_SELECT = %00000010
+
+; Collision thresholds
+COLLIDE_X_THRESH = 10
+COLLIDE_Y_THRESH = 8
