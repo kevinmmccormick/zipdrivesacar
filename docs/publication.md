@@ -1,6 +1,6 @@
 # Publication preparation — 2026-10-07
 
-Intended repository: `kevinmmccormick/zipdrivesacar`, public.
+Published repository: [kevinmmccormick/zipdrivesacar](https://github.com/kevinmmccormick/zipdrivesacar), public.
 License selected by the owner: GPL-2.0-or-later.
 
 ## Scope
@@ -31,13 +31,15 @@ checks now affect the test exit code.
   regions and a very small car silhouette. The automated pixel thresholds pass
   despite this weak visual result. Do not call this a polished release.
 - Source review found rule and presentation concerns recorded in `testing.md`.
-- CI workflow and GNU Make path have not yet run on GitHub/Linux.
+- GitHub Actions and the GNU Make build passed on Linux in
+  [run 37650394244](https://github.com/kevinmmccormick/zipdrivesacar/actions/runs/37650394244).
+  The workflow packages the development ROM with source and license notices.
 
 The checks do not establish cycle-accurate timing, complete gameplay correctness,
 or real-console compatibility. No stable-release tag is warranted from this
 cleanup alone.
 
-## Environment limits and upload
+## Workspace consolidation and upload
 
 The original workspace files initially rejected writes. The owner repaired
 inherited Windows permissions, and write access was verified without modifying
@@ -46,22 +48,12 @@ root, where a fresh build reproduced the original ROM hash. Original files,
 loose generated outputs, and the temporary publication repository were preserved
 under the ignored `artifacts/workspace-before-consolidation-*` directory.
 
-This session still cannot write the root `.git` directory. Importing the prepared
-commit therefore remains a local Git step to perform outside the restricted
-session. The preserved publication repository contains commit `2128e03` on `main`.
+The initial session blocked Git metadata writes and outbound GitHub connections.
+Switching to Ask for approval enabled approved commands outside the sandbox.
+The prepared history (`2128e03`) was imported into the root repository, the
+consolidation was committed, and `main` was pushed to the public repository.
+The first GitHub build passed. The workspace root is now the active repository;
+the archived preparation copy is retained only as a backup.
 
-GitHub CLI could not reach the configured proxy (`127.0.0.1:9`); no browser was
-available. No remote repository, push, release, or CI run was verified.
-
-Once local Git history is imported and GitHub access is restored, run from the
-workspace root:
-
-```powershell
-gh auth status
-gh repo create kevinmmccormick/zipdrivesacar --public --source . --remote origin --push --description 'Zip Drives a Car: a 4K NTSC Atari 2600 homebrew in DASM assembly'
-```
-
-If the repository already exists, inspect it before adding its remote and
-pushing; do not overwrite unrelated work or force-push. Verify the uploaded
-commit and Actions build afterward. Release ROMs with corresponding source and
-notices; the CI artifact includes these together.
+No stable release has been published. Release ROMs with corresponding source
+and notices; the development CI artifact includes these together.
