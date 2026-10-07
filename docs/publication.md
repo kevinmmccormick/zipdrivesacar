@@ -39,15 +39,22 @@ cleanup alone.
 
 ## Environment limits and upload
 
-The original workspace files rejected writes in this session, while new
-directories were writable. Therefore this clean repository was prepared under
-`publication/` without replacing the originals. The original artifacts remain
-available locally. Use this directory as the repository root, not its parent.
+The original workspace files initially rejected writes. The owner repaired
+inherited Windows permissions, and write access was verified without modifying
+file contents. The prepared files have now been consolidated into the workspace
+root, where a fresh build reproduced the original ROM hash. Original files,
+loose generated outputs, and the temporary publication repository were preserved
+under the ignored `artifacts/workspace-before-consolidation-*` directory.
+
+This session still cannot write the root `.git` directory. Importing the prepared
+commit therefore remains a local Git step to perform outside the restricted
+session. The preserved publication repository contains commit `2128e03` on `main`.
 
 GitHub CLI could not reach the configured proxy (`127.0.0.1:9`); no browser was
 available. No remote repository, push, release, or CI run was verified.
 
-Once GitHub access is restored, run from this publication repository:
+Once local Git history is imported and GitHub access is restored, run from the
+workspace root:
 
 ```powershell
 gh auth status
